@@ -1,71 +1,44 @@
 import { Link } from "react-router-dom";
+import { projects } from "../data/portfolioData";
+
+function ProjectCard({ title, description, github }) {
+  return (
+    <div className="project-item">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      {github && (
+        <a
+          className="item-link"
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Code →
+        </a>
+      )}
+    </div>
+  );
+}
 
 function Projects() {
   return (
     <div className="projects-page">
-      <h1>My Projects</h1>
-
-      <div className="project-card">
-        <h3>E-commerce Website</h3>
-        <p>
-          A full-stack e-commerce website built with Python and Django,
-          featuring user authentication, product management, shopping cart
-          functionality.
-        </p>
-        <a
-          className="link-button"
-          href="https://github.com/Shanu-sp"
-          target="_blank"
-        >
-          View Code
-        </a>
+      <div className="page-header">
+        <h1 className="page-title">Projects</h1>
+        <p className="page-subtitle">Selected work and experiments</p>
       </div>
-
-      <div className="project-card">
-        <h3>Personal Portfolio</h3>
-        <p>
-          Minimal developer portfolio built using React showcasing skills and
-          projects.
-        </p>
-        <a
-          className="link-button"
-          href="https://github.com/Shanu-sp/portapp"
-          target="_blank"
-        >
-          View Code
-        </a>
+      <div className="item-list">
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            title={project.title}
+            description={project.description}
+            github={project.github}
+          />
+        ))}
       </div>
-
-      <div className="project-card">
-        <h3>Instagram UI Clone</h3>
-        <p>
-          Designed and implemented an Instagram homepage UI clone using HTML and
-          CSS, demonstrating responsive design and modern UI layout techniques.
-        </p>
-        <a
-          className="link-button"
-          href="https://github.com/Shanu-sp/instagram-clone"
-          target="_blank"
-        >
-          View Code
-        </a>
-      </div>
-
-      <div className="project-card">
-        <h3>IoT Based Air Quality Monitoring System</h3>
-        <p>
-          College Project - Developed an IoT system to monitor real-time air
-          quality using environmental sensors and a microcontroller. Collected
-          and transmitted air pollution data to a cloud platform for monitoring
-          and analysis. Enabled early detection of harmful air conditions
-          through continuous monitoring and alerts.
-        </p>
-      </div>
-
-      <br />
-
-      <Link className="link-button" to="/">
-        ← Back
+      <Link className="back-link" to="/">
+        ← Back to Home
       </Link>
     </div>
   );

@@ -1,88 +1,86 @@
-import ProjectItem from "./projectItem";
 import { Link } from "react-router-dom";
+import { personalInfo, skills, contact } from "../data/portfolioData";
 
 function ProfileCard() {
   return (
-    <div className="card">
-      <h1 className="name">SHANU P</h1>
-      <p className="role">Python Full Stack Developer</p>
-      <p>
-        I am an aspiring Software Developer with strong knowledge of Python,
-        Django, HTML, CSS, JavaScript, React, and MySQL. I enjoy building
-        practical projects and continuously improving my development skills. My
-        portfolio showcases projects that demonstrate my ability to create clean
-        user interfaces and develop functional web applications.
-      </p>
+    <div className="hero">
+      <div className="hero-content">
+        <div className="hero-image-wrapper">
+          {personalInfo.profilePhoto && (
+            <img
+              src={personalInfo.profilePhoto}
+              alt={`${personalInfo.name} profile`}
+              className="hero-image"
+            />
+          )}
+          <div className="hero-image-ring"></div>
+        </div>
 
-      <div>
-        <h3>SKILLS</h3>
+        <div className="hero-text">
+          <h1 className="hero-name">{personalInfo.name}</h1>
+          <p className="hero-role">{personalInfo.role}</p>
+          <p className="hero-bio">{personalInfo.bio}</p>
+        </div>
       </div>
 
-      <div className="skills">
-        <span>Python</span>
-        <span>React.js</span>
-        <span>Django</span>
-        <span>JavaScript</span>
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>Git</span>
-        <span>GitHub</span>
-        <span>Version Control</span>
-        <span>MySQL</span>
-        <span>MVC Architecture</span>
-        <span>REST API</span>
-        <span>Django REST Framework</span>
-        <span>OOP</span>
-        <span>PostgreSQL</span>
-        <span>Bootstrap</span>
-        <span>Authentication and Session Management</span>
-        <span>ORM</span>
-        <span>JSON</span>
-        <span>JQuery</span>
-        <span>VS Code</span>
+      <div className="hero-cta">
+        <Link to="/projects" className="btn-primary">
+          View Projects →
+        </Link>
+        {contact.resume && (
+          <a
+            className="btn-secondary"
+            href={contact.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download Resume
+          </a>
+        )}
       </div>
 
-      {/* <div className="projects">
-        <h3>Projects</h3>
-
-        <ProjectItem
-          title="E-commerce Website"
-          description="A full-stack e-commerce website built with Python and Django"
-        />
-        <ProjectItem
-          title="Personal Portfolio"
-          description="A personal portfolio website using React.js for showcasing my projects and skills."
-        />
-        <ProjectItem
-          title="Instagram UI Clone"
-          description="Designed and implemented an Instagram homepage UI clone using HTML and CSS, demonstrating responsive design and modern UI layout techniques."
-        />
-      </div> */}
-
-      <div
-        className="projects-link"
-        aria-placeholder="Click here to view projects"
-      >
-        <Link to="/projects">VIEW MY PROJECTS →</Link>
+      <div className="hero-skills">
+        <h3 className="skills-title">Tech Stack</h3>
+        <div className="skills-grid">
+          {skills.map((skill, index) => (
+            <span key={index} className="skill-chip">
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
 
-      <div className="contact">
-        <a className="email" href="mailto:shanualr20@gmail.com">
-          📧 shanualr20@gmail.com
+      <div className="hero-contact">
+        <a className="contact-card" href={`mailto:${contact.email}`}>
+          <span className="contact-icon">📧</span>
+          <div className="contact-info">
+            <span className="contact-label">Email</span>
+            <span className="contact-value">{contact.email}</span>
+          </div>
         </a>
         <a
-          className="git"
-          href="https://github.com/Shanu-sp"
+          className="contact-card"
+          href={contact.github}
           target="_blank"
           rel="noopener noreferrer"
         >
-          🔗 github.com/Shanu-sp
+          <span className="contact-icon">💻</span>
+          <div className="contact-info">
+            <span className="contact-label">GitHub</span>
+            <span className="contact-value">github.com/Shanu-sp</span>
+          </div>
         </a>
         <a
-          className="linked"
-          href="https://www.linkedin.com/in/shanu-p-636b57303"
+          className="contact-card"
+          href={contact.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          🔗 linkedin.com/in/shanu-p-636b57303
+          <span className="contact-icon">🔗</span>
+          <div className="contact-info">
+            <span className="contact-label">LinkedIn</span>
+            <span className="contact-value">linkedin.com/in/shanu-p-636b57303</span>
+          </div>
         </a>
       </div>
     </div>
