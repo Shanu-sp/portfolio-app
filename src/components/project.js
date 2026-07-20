@@ -28,13 +28,21 @@ function Projects() {
         <p className="page-subtitle">Selected work and experiments</p>
       </div>
       <div className="item-list">
-        {projects.map((project) => (
-          <ProjectCard
+        {projects.map((project, index) => (
+          <div
             key={project.id}
-            title={project.title}
-            description={project.description}
-            github={project.github}
-          />
+            className="project-item"
+            style={{
+              animation: `fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${0.1 + index * 0.1}s forwards`,
+              opacity: 0,
+            }}
+          >
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              github={project.github}
+            />
+          </div>
         ))}
       </div>
       <Link className="back-link" to="/">
